@@ -1,26 +1,41 @@
 from gurobipy import Model, GRB, quicksum
+import sys
+import os
+from contextlib import contextmanager
+
+@contextmanager
+def suppress_stdout():          # per evitare che gurobi scriva sul terminale
+    with open(os.devnull, 'w') as devnull:
+        old_stdout = os.dup(1)
+        os.dup2(devnull.fileno(), 1)
+        try:
+            yield
+        finally:
+            os.dup2(old_stdout, 1)
+            os.close(old_stdout)
 
 def solve(M, N, slices):
-    model = Model("pizza")
-    model.Params.OutputFlag = 0  # silenzia l'output
+    with suppress_stdout():
+        model = Model("pizza")
+        model.Params.OutputFlag = 0  # silenzia l'output
 
-    # variabili binarie: x[i] = 1 se prendo la pizza i, altrimenti 0
-    x = model.addVars(N, vtype=GRB.BINARY, name="x")
+        # variabili binarie: x[i] = 1 se prendo la pizza i, altrimenti 0
+        x = model.addVars(N, vtype=GRB.BINARY, name="x")
 
-    # vincolo: somma delle fette selezionate ≤ M
-    model.addConstr(quicksum(slices[i] * x[i] for i in range(N)) <= M, name="capacity")
+        # vincolo: somma delle fette selezionate ≤ M
+        model.addConstr(quicksum(slices[i] * x[i] for i in range(N)) <= M, name="capacity")
 
-    # funzione obiettivo: massimizzare il numero di fette
-    model.setObjective(quicksum(slices[i] * x[i] for i in range(N)), GRB.MAXIMIZE)
+        # funzione obiettivo: massimizzare il numero di fette
+        model.setObjective(quicksum(slices[i] * x[i] for i in range(N)), GRB.MAXIMIZE)
 
-    # risoluzione
-    model.setParam("TimeLimit", 180)     # limite di tempo a 180 secondi
-    model.optimize()
+        # risoluzione
+        model.setParam("TimeLimit", 180)     # limite di tempo a 180 secondi
+        model.optimize()
 
-    # recupera soluzione
-    if model.SolCount > 0:
-        # somma delle fette selezionate
-        total_slices = sum(slices[i] for i in range(N) if x[i].X > 0.5)
-        return total_slices
-    else:
-        return 0  # nessuna soluzione trovata
+        # recupera soluzione
+        if model.SolCount > 0:
+            # somma delle fette selezionate
+            total_slices = sum(slices[i] for i in range(N) if x[i].X > 0.5)
+            return total_slices
+        else:
+            return 0  # nessuna soluzione trovata
