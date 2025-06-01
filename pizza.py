@@ -18,14 +18,11 @@ def list_datasets(input_folder='Datasets'):
         return
 
     # itera sui file nella cartella
-    #for filename in os.listdir(input_folder):
-    #    if filename.endswith('.in'):
-    #        full_path = os.path.join(input_folder, filename)
-    #        dataset_paths.append(full_path)
-
-    full_path = os.path.join(input_folder, 'extra.in')
-    dataset_paths.append(full_path) 
-
+    for filename in os.listdir(input_folder):
+        if filename.endswith('.in'):
+            full_path = os.path.join(input_folder, filename)
+            dataset_paths.append(full_path)
+            
     return dataset_paths
     
 if __name__ == '__main__':
