@@ -1,4 +1,5 @@
 import random
+import time
 
 # parameters for small dataset
 #POPULATION_SIZE = 50
@@ -11,6 +12,7 @@ POPULATION_SIZE = 300
 NUM_GENERATIONS = 500
 MUTATION_RATE = 0.07
 TOURNAMENT_SIZE = 3
+TIME_LIMIT = 180
 
 
 def fitness(bitstring, slices, M):
@@ -66,11 +68,17 @@ def generate_first_population(M, N, slices):
     return population
 
 def solve(M, N, slices):
+    start_time = time.perf_counter()
     population = generate_first_population(M, N, slices)
     best_individual = max(population, key=lambda x: fitness(x, slices, M))
     best_score = fitness(best_individual, slices, M)
 
     for gen in range(NUM_GENERATIONS):
+        elapsed = time.perf_counter() - start_time
+        if elapsed >= TIME_LIMIT:
+            print(f"\t\t[Geneneration {gen+1}] Early stop, time limit reached ({elapsed:.2f}s)")
+            break
+
         new_population = []
 
         while len(new_population) < POPULATION_SIZE:
@@ -102,7 +110,8 @@ def solve(M, N, slices):
             print(f"\t\t[Geneneration {gen+1}] Early stop, fitness reached max score (M)")
             break
 
-    return best_score
+    elapsed_time = time.perf_counter() - start_time
+    return best_score, elapsed
 
 """
 OLD FITNESS FUNC

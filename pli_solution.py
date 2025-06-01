@@ -1,4 +1,5 @@
 from gurobipy import Model, GRB, quicksum
+import time
 import sys
 import os
 from contextlib import contextmanager
@@ -15,6 +16,7 @@ def suppress_stdout():          # per evitare che gurobi scriva sul terminale
             os.close(old_stdout)
 
 def solve(M, N, slices):
+    start_time = time.perf_counter()
     with suppress_stdout():
         model = Model("pizza")
         model.Params.OutputFlag = 0  # silenzia l'output
@@ -34,8 +36,9 @@ def solve(M, N, slices):
 
         # recupera soluzione
         if model.SolCount > 0:
-            # somma delle fette selezionate
-            total_slices = sum(slices[i] for i in range(N) if x[i].X > 0.5)
-            return total_slices
+            total_slices = sum(slices[i] for i in range(N) if x[i].X > 0.5) # somma delle fette selezionate
+            elapsed = time.perf_counter() - start_time
+            return total_slices, elapsed
         else:
-            return 0  # nessuna soluzione trovata
+            elapsed = time.perf_counter() - start_time
+            return 0, elapsed  # nessuna soluzione trovata
