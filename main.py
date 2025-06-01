@@ -19,16 +19,25 @@ def list_datasets(input_folder='Datasets'):
         return
 
     # itera sui file nella cartella
-    for filename in os.listdir(input_folder):
-        if filename.endswith('.in'):
-            full_path = os.path.join(input_folder, filename)
-            dataset_paths.append(full_path)
+    #for filename in os.listdir(input_folder):
+    #    if filename.endswith('.in'):
+    #        full_path = os.path.join(input_folder, filename)
+    #        dataset_paths.append(full_path)
+
+    full_path = os.path.join(input_folder, 'small.in')
+    dataset_paths.append(full_path)
+    full_path = os.path.join(input_folder, 'medium.in')
+    dataset_paths.append(full_path)
+    full_path = os.path.join(input_folder, 'big.in')
+    dataset_paths.append(full_path) 
+    full_path = os.path.join(input_folder, 'extra.in')
+    dataset_paths.append(full_path) 
 
     return dataset_paths
     
 if __name__ == '__main__':
 
-    dataset_paths = list_datasets('Default Datasets')
+    dataset_paths = list_datasets('Datasets')
 
     results = {                 # struttura per memorizzare i risultati
         "dataset_names": [],
@@ -38,13 +47,14 @@ if __name__ == '__main__':
         "genetic_times": []
     }
 
-    print("-"*50)
+    print("-"*80)
 
     for path in dataset_paths:
         results["dataset_names"].append(path)
 
-        print(f"== RISOLUZIONE: {path} ==")
+        print(f"== RISOLUZIONE ==")
         M, N, slices = read_dataset(path)
+        print(f"\tDataset: {path}")
         print("\tMax fette:", M)
         print("\tNumero tipi di pizza:", N)
         if len(slices) < 20:
@@ -69,7 +79,7 @@ if __name__ == '__main__':
         print(f"\tPLI -> Score: {pli_score}, Tempo: {pli_time:.4f}s")
         print(f"\tGenetico -> Score: {genetic_score}, Tempo: {genetic_time:.4f}s")
 
-        print("-"*100)
+        print("-"*80)
 
     # --- Grafici ---
     plt.figure(figsize=(12, 8))     # imposta le dimensioni della figura

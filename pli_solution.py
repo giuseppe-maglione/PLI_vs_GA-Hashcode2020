@@ -21,6 +21,14 @@ def solve(M, N, slices):
         model = Model("pizza")
         model.Params.OutputFlag = 0  # silenzia l'output
 
+        # cerchiamo di limitare la potenza di gurobi
+        model.Params.Threads = 1     # usa solo 1 thread
+        model.Params.MIPGap = 0.0
+        model.Params.Presolve = 0
+        model.Params.Heuristics = 0
+        model.Params.TimeLimit = 60
+
+
         # variabili binarie: x[i] = 1 se prendo la pizza i, altrimenti 0
         x = model.addVars(N, vtype=GRB.BINARY, name="x")
 
@@ -31,7 +39,6 @@ def solve(M, N, slices):
         model.setObjective(quicksum(slices[i] * x[i] for i in range(N)), GRB.MAXIMIZE)
 
         # risoluzione
-        model.setParam("TimeLimit", 180)     # limite di tempo a 180 secondi
         model.optimize()
 
         # recupera soluzione
