@@ -21,13 +21,12 @@ def solve(M, N, slices):
         model = Model("pizza")
         model.Params.OutputFlag = 0  # silenzia l'output
 
-        # cerchiamo di limitare la potenza di gurobi
-        model.Params.Threads = 1     # usa solo 1 thread
+        # cerchiamo di rendere quanto più confrontabile possibile la soluzione di gurobi
+        model.Params.Threads = 1 
         model.Params.MIPGap = 0.0
         model.Params.Presolve = 0
         model.Params.Heuristics = 0
         model.Params.TimeLimit = 60
-
 
         # variabili binarie: x[i] = 1 se prendo la pizza i, altrimenti 0
         x = model.addVars(N, vtype=GRB.BINARY, name="x")
