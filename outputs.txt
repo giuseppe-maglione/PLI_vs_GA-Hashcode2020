@@ -1,0 +1,76 @@
+--------------------------------------------------------------------------------
+== RISOLUZIONE ==
+        Dataset: Datasets/small.in
+        Max fette: 100
+        Numero tipi di pizza: 10
+        Lista fette per pizza: [4, 14, 15, 18, 29, 32, 36, 82, 95, 95]
+        [] Risoluzione con PLI in corso...
+        [] Risoluzione con algoritmo genetico in corso...
+                [Geneneration 1] Current best fitness = 99
+                [Geneneration 50] Current best fitness = 99
+                [Geneneration 100] Current best fitness = 99
+                [Geneneration 150] Current best fitness = 99
+                [Geneneration 173] Early stop, fitness reached max score (100)
+== RISULTATI ==
+        PLI -> Score: 100, Tempo: 0.0085s
+        Genetico -> Score: 100, Tempo: 0.1321s
+--------------------------------------------------------------------------------
+== RISOLUZIONE ==
+        Dataset: Datasets/medium.in
+        Max fette: 4500
+        Numero tipi di pizza: 50
+        Lista fette per pizza: [...]
+        [] Risoluzione con PLI in corso...
+        [] Risoluzione con algoritmo genetico in corso...
+                [Geneneration 1] Current best fitness = 4498
+                [Geneneration 50] Current best fitness = 4499
+                [Geneneration 100] Current best fitness = 4499
+                [Geneneration 113] Early stop, fitness reached max score (4500)
+== RISULTATI ==
+        PLI -> Score: 4500, Tempo: 0.0283s
+        Genetico -> Score: 4500, Tempo: 0.1928s
+--------------------------------------------------------------------------------
+== RISOLUZIONE ==
+        Dataset: Datasets/big.in
+        Max fette: 1000000000
+        Numero tipi di pizza: 2000
+        Lista fette per pizza: [...]
+        [] Risoluzione con PLI in corso...
+        [] Risoluzione con algoritmo genetico in corso...
+                [Geneneration 1] Current best fitness = 999999725
+                [Geneneration 50] Current best fitness = 999999725
+                [Geneneration 100] Current best fitness = 999999725
+                [Geneneration 150] Current best fitness = 999999725
+                [Geneneration 200] Current best fitness = 999999725
+                [Geneneration 250] Current best fitness = 999999725
+                [Geneneration 300] Current best fitness = 999999725
+                [Geneneration 350] Current best fitness = 999999725
+                [Geneneration 400] Current best fitness = 999999725
+                [Geneneration 450] Current best fitness = 999999725
+                [Geneneration 500] Current best fitness = 999999725
+== RISULTATI ==
+        PLI -> Score: 1000000000, Tempo: 2.1111s
+        Genetico -> Score: 999999725, Tempo: 16.0980s
+--------------------------------------------------------------------------------
+== RISOLUZIONE ==
+        Dataset: Datasets/extra.in
+        Max fette: 505000000
+        Numero tipi di pizza: 10000
+        Lista fette per pizza: [...]
+        [] Risoluzione con PLI in corso...
+        [] Risoluzione con algoritmo genetico in corso...
+                [Geneneration 1] Current best fitness = 504999983
+                [Geneneration 50] Current best fitness = 504999983
+                [Geneneration 100] Current best fitness = 504999983
+                [Geneneration 150] Current best fitness = 504999983
+                [Geneneration 200] Current best fitness = 504999983
+                [Geneneration 250] Current best fitness = 504999983
+                [Geneneration 300] Current best fitness = 504999983
+                [Geneneration 350] Current best fitness = 504999999
+                [Geneneration 400] Current best fitness = 504999999
+                [Geneneration 450] Current best fitness = 504999999
+                [Geneneration 495] Early stop, time limit reached (60.07s)
+== RISULTATI ==
+        PLI -> Score: 0, Tempo: 60.0578s
+        Genetico -> Score: 504999999, Tempo: 60.0680s
+--------------------------------------------------------------------------------

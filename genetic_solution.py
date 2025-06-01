@@ -2,18 +2,11 @@ import random
 import time
 
 # parameters for small dataset
-#POPULATION_SIZE = 50
-#NUM_GENERATIONS = 100
-#MUTATION_RATE = 0.01
-#TOURNAMENT_SIZE = 3
-
-# parameters for big dataset
-POPULATION_SIZE = 300
+POPULATION_SIZE = 50
 NUM_GENERATIONS = 500
-MUTATION_RATE = 0.07
+MUTATION_RATE = 0.05
 TOURNAMENT_SIZE = 3
 TIME_LIMIT = 60
-
 
 def fitness(bitstring, slices, M):
     total = sum(s for i, s in enumerate(slices) if bitstring[i])
@@ -107,7 +100,7 @@ def solve(M, N, slices):
             print(f"\t\t[Geneneration {gen+1}] Current best fitness = {best_score}")
 
         if best_score == M:
-            print(f"\t\t[Geneneration {gen+1}] Early stop, fitness reached max score (M)")
+            print(f"\t\t[Geneneration {gen+1}] Early stop, fitness reached max score ({M})")
             break
 
     elapsed_time = time.perf_counter() - start_time

@@ -23,12 +23,6 @@ def list_datasets(input_folder='Datasets'):
     #        full_path = os.path.join(input_folder, filename)
     #        dataset_paths.append(full_path)
 
-    full_path = os.path.join(input_folder, 'small.in')
-    dataset_paths.append(full_path)
-    full_path = os.path.join(input_folder, 'medium.in')
-    dataset_paths.append(full_path)
-    full_path = os.path.join(input_folder, 'big.in')
-    dataset_paths.append(full_path) 
     full_path = os.path.join(input_folder, 'extra.in')
     dataset_paths.append(full_path) 
 
