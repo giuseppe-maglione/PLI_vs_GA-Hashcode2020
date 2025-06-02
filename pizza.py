@@ -29,18 +29,9 @@ if __name__ == '__main__':
 
     dataset_paths = list_datasets('Datasets')
 
-    results = {                 # struttura per memorizzare i risultati
-        "dataset_names": [],
-        "pli_scores": [],
-        "pli_times": [],
-        "genetic_scores": [],
-        "genetic_times": []
-    }
-
     print("-"*80)
 
     for path in dataset_paths:
-        results["dataset_names"].append(path)
 
         print(f"== RISOLUZIONE ==")
         M, N, slices = read_dataset(path)
@@ -55,14 +46,10 @@ if __name__ == '__main__':
         # --- PLI ---
         print("\t[] Risoluzione con PLI in corso...")
         pli_score, pli_time = pli_solution.solve(M, N, slices)
-        results["pli_scores"].append(pli_score)
-        results["pli_times"].append(pli_time)
 
         # --- Algoritmo Genetico ---
-        print("\t[] Risoluzione con algoritmo genetico in corso...")
+        print("\t[] Risoluzione con Algoritmo Genetico in corso...")
         genetic_score, genetic_time = genetic_solution.solve(M, N, slices) 
-        results["genetic_scores"].append(genetic_score)
-        results["genetic_times"].append(genetic_time)
 
         # --- Risultati ---
         print("== RISULTATI ==")
