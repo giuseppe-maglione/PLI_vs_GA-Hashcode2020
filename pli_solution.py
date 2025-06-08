@@ -32,7 +32,7 @@ def solve(M, N, slices):
         x = model.addVars(N, vtype=GRB.BINARY, name="x")
 
         # vincolo: somma delle fette selezionate ≤ M
-        model.addConstr(quicksum(slices[i] * x[i] for i in range(N)) <= M, name="capacity")
+        model.addConstr(quicksum(slices[i] * x[i] for i in range(N)) <= M, name="max_slices")
 
         # funzione obiettivo: massimizzare il numero di fette
         model.setObjective(quicksum(slices[i] * x[i] for i in range(N)), GRB.MAXIMIZE)
