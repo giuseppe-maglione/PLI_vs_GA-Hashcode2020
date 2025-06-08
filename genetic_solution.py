@@ -1,7 +1,7 @@
 import random
 import time
 
-# parameters for small dataset
+# parameters
 POPULATION_SIZE = 50
 NUM_GENERATIONS = 500
 MUTATION_RATE = 0.05
@@ -120,7 +120,7 @@ def repair(bitstring, slices, M):
     if total <= M:
         return bitstring
 
-    # Remove pizze finché rientra in M
+    # rimuove pizze finché rientra in M
     indices = [i for i, bit in enumerate(bitstring) if bit == 1]
     random.shuffle(indices)
     for i in indices:
