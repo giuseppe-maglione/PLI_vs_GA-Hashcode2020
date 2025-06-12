@@ -22,10 +22,11 @@ def solve(M, N, slices):
         model.Params.OutputFlag = 0  # silenzia l'output
 
         # cerchiamo di rendere quanto più confrontabile possibile la soluzione di gurobi
+        # con questi parametri forziamo gurobi a usare un branch and bound "puro".
         model.Params.Threads = 1 
-        model.Params.MIPGap = 0.0
-        model.Params.Presolve = 0
-        model.Params.Heuristics = 0
+        model.Params.MIPGap = 0.0       # impone un gap tra soluzione trovata e ottima pari a 0
+        model.Params.Presolve = 0       # gurobi non semplifica il modello per risolvere  
+        model.Params.Heuristics = 0     # disattiva l'uso di euristiche
         model.Params.TimeLimit = 60
 
         # variabili binarie: x[i] = 1 se prendo la pizza i, altrimenti 0
